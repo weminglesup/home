@@ -80,5 +80,36 @@
             <a href="https://bit.ly/3z42JCI"><img src="https://cdn.branch.io/branch-assets/1659570137910-og_image.png"></a>
         </div>
     </div>
+    <script>
+        // 모바일 디바이스에서 자동으로 앱 열기
+        function openApp() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // iOS와 Android를 구분하여 딥링크 설정
+            if (/android/i.test(userAgent)) {
+                // Android용 딥링크 (예시: yourapp://example)
+                window.location.href = "yourapp://example";
+                
+                // 앱이 열리지 않으면 Play Store로 리디렉션
+                setTimeout(function() {
+                    window.location.href = "https://play.google.com/store/apps/details?id=com.yourcompany.yourapp";
+                }, 2000);
+            } else if (/iPhone|iPad|iPod/i.test(userAgent)) {
+                // iOS용 딥링크 (예시: yourapp://example)
+                window.location.href = "yourapp://example";
+                
+                // 앱이 열리지 않으면 App Store로 리디렉션
+                setTimeout(function() {
+                    window.location.href = "https://apps.apple.com/us/app/yourapp/id1234567890";
+                }, 2000);
+            } else {
+                // 모바일이 아닐 경우 웹 페이지로 리디렉션
+                window.location.href = "https://wemingle.app";
+            }
+        }
+
+        // 페이지 로드 시 자동으로 앱 열기
+        window.onload = openApp;
+    </script>
 </body>
 </html>
