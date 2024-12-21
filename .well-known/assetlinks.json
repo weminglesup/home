@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.wemingle.cleaningrest",
+      "sha256_cert_fingerprints": [
+        "28:9E:5F:9C:85:70:BA:FB:9B:CE:21:01:8D:07:CA:64:D1:E2:57:CF:AE:A2:2B:D4:72:11:B0:31:8E:8C:EB:80",
+        "B7:F9:88:C2:96:CE:21:EF:F6:E8:15:A2:B6:1B:98:32:A4:C6:ED:30:89:58:BB:8C:57:49:D8:46:14:CF:98:8B"
+      ]
+    }
+  }
+]
