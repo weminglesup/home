@@ -1,9 +1,9 @@
 export default function handler(req, res) {
     const { title, description, image } = req.query;
 
-    const ogTitle = title || "WeMingle - Default Title";
-    const ogDescription = description || "Join WeMingle and discover amazing experiences!";
-    const ogImage = image || "https://example.com/default-image.jpg";
+    const ogTitle = title || "위밍글";
+    const ogDescription = description || "팀 게임 멤버 및 일정 관리";
+    const ogImage = image || "https://cleaningrest-s3bucket.s3.ap-northeast-2.amazonaws.com/wemingle_text.png";
 
     res.setHeader("Content-Type", "text/html");
     res.send(`
