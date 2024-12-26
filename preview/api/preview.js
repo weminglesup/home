@@ -1,12 +1,11 @@
 export default function handler(req, res) {
     const { title, description, imageUrl, companyid_index } = req.query;
 
-    // 기본 값 설정
+    // 기본 이미지 설정
     const defaultImage = "https://cleaningrest-s3bucket.s3.ap-northeast-2.amazonaws.com/wemingle_text.png";
     const ogImage = imageUrl || defaultImage;
-    const appLink = `wemingle://preview?companyid_index=${companyid_index || ''}&uni_link=true`;
 
-    // HTML 구성
+    // 정적 HTML 반환
     const html = `
         <!DOCTYPE html>
         <html lang="en">
@@ -46,10 +45,11 @@ export default function handler(req, res) {
                     text-align: center;
                 }
                 .main-image {
-                    width: 100%;
+                    width: 50%;
                     height: 250px;
                     background: url('${ogImage}') no-repeat center center;
                     background-size: cover;
+                    margin: 0 auto;
                 }
                 .content {
                     padding: 20px;
@@ -63,29 +63,7 @@ export default function handler(req, res) {
                     margin: 10px 0;
                     color: #666;
                 }
-                .btn-container img {
-                    margin: 10px;
-                    width: 120px;
-                    height: auto;
-                }
             </style>
-            <script>
-                // 딥링크 URL 설정
-                const appLink = "${appLink}";
-
-                // 딥링크로 리디렉션
-                window.location.href = appLink;
-
-                // 2초 후 앱스토어로 이동
-                setTimeout(() => {
-                    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-                    if (/android/i.test(userAgent)) {
-                        window.location.href = "https://play.google.com/store/apps/details?id=com.wemingle.cleaningrest";
-                    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                        window.location.href = "https://apps.apple.com/us/app/id6480429052";
-                    }
-                }, 2000);
-            </script>
         </head>
         <body>
             <div class="container">
@@ -93,17 +71,11 @@ export default function handler(req, res) {
                 <div class="content">
                     <h1 class="app-title">${title || '위밍글'}</h1>
                     <p class="description">${description || '팀 게임 멤버 및 일정 관리'}</p>
-                    <p>앱을 다운로드하려면 아래 링크를 클릭하세요.</p>
-                    <div class="btn-container">
-                        <a href="https://apple.co/4cv5rQ4"><img src="https://cdn.branch.io/branch-assets/1659570097391-og_image.png" alt="App Store"></a>
-                        <a href="https://bit.ly/3z42JCI"><img src="https://cdn.branch.io/branch-assets/1659570137910-og_image.png" alt="Google Play"></a>
-                    </div>
                 </div>
             </div>
         </body>
         </html>
     `;
 
-    // HTML 반환
     res.status(200).send(html);
-};
+}
