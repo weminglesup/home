@@ -94,24 +94,23 @@ export default function handler(req, res) {
                 document.getElementById('og-image').setAttribute('content', imageUrl);
                 document.querySelector('meta[name="twitter:image"]').setAttribute('content', imageUrl);
                 const mainImage = document.querySelector('.main-image');
-                mainImage.style.backgroundImage = 'url(${imageUrl})';
+                mainImage.style.backgroundImage = 'url(' + imageUrl + ')';
             } else {
                 const defaultImage = "https://cleaningrest-s3bucket.s3.ap-northeast-2.amazonaws.com/wemingle_text.png";
                 document.getElementById('og-image').setAttribute('content', defaultImage);
                 document.querySelector('meta[name="twitter:image"]').setAttribute('content', defaultImage);
                 const mainImage = document.querySelector('.main-image');
-                mainImage.style.backgroundImage = 'url(${defaultImage})';
+                mainImage.style.backgroundImage = 'url(' + defaultImage + ')';
             }
             
             // 딥링크 URL을 구성합니다.
-            const deepLinkUrl = 'wemingle://preview?companyid_index=${companyidIndex}&uni_link=true';
+            const deepLinkUrl = 'wemingle://preview?companyid_index=' + companyidIndex + '&uni_link=true';
     
             // 딥링크 시도
             window.location.href = deepLinkUrl;
     
             // 일정 시간 후에 앱이 열리지 않으면 스토어로 리디렉션
             setTimeout(function () {
-                // 앱이 열리지 않으면 스토어로 리디렉션
                 var isAppInstalled = false; // 실제로 확인할 수 없으므로, 기본적으로 시간을 기다린 후 스토어로 리디렉션
                 if (!isAppInstalled) {
                     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
