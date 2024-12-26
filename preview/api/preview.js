@@ -1,5 +1,5 @@
 // api/preview.js
-module.exports = (req, res) => {
+export default function handler(req, res) {
     const { title, description, imageUrl, companyid_index } = req.query;
 
     // 기본 값 설정
