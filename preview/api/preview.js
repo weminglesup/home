@@ -6,6 +6,10 @@ export default function handler(req, res) {
     const defaultImage = "https://cleaningrest-s3bucket.s3.ap-northeast-2.amazonaws.com/wemingle_text.png";
     const ogImage = imageUrl || defaultImage;
 
+    console.log(title);
+    console.log(imageUrl);
+    console.log(ogImage);
+
     // HTML 문자열로 동적으로 반환할 페이지 구성
     const html = `
         <!DOCTYPE html>
