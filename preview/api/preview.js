@@ -79,6 +79,54 @@ module.exports = (req, res) => {
                     height: auto;
                 }
             </style>
+            <script>
+            // 현재 페이지 URL에서 쿼리 파라미터를 가져옵니다.
+            const urlParams = new URLSearchParams(window.location.search);
+    
+            // 쿼리 파라미터에서 딥링크 관련 데이터 추출
+            const title = urlParams.get('title');
+            const description = urlParams.get('description');
+            const imageUrl = urlParams.get('imageUrl');
+            const companyidIndex = urlParams.get('companyid_index');
+    
+            // imageUrl이 존재하면 OG 태그의 og:image와 twitter:image를 업데이트
+            if (imageUrl) {
+                document.getElementById('og-image').setAttribute('content', imageUrl);
+                document.querySelector('meta[name="twitter:image"]').setAttribute('content', imageUrl);
+                const mainImage = document.querySelector('.main-image');
+                mainImage.style.backgroundImage = 'url(${imageUrl})';
+            } else {
+                const defaultImage = "https://cleaningrest-s3bucket.s3.ap-northeast-2.amazonaws.com/wemingle_text.png";
+                document.getElementById('og-image').setAttribute('content', defaultImage);
+                document.querySelector('meta[name="twitter:image"]').setAttribute('content', defaultImage);
+                const mainImage = document.querySelector('.main-image');
+                mainImage.style.backgroundImage = 'url(${defaultImage})';
+            }
+            
+            // 딥링크 URL을 구성합니다.
+            const deepLinkUrl = 'wemingle://preview?companyid_index=${companyidIndex}&uni_link=true';
+    
+            // 딥링크 시도
+            window.location.href = deepLinkUrl;
+    
+            // 일정 시간 후에 앱이 열리지 않으면 스토어로 리디렉션
+            setTimeout(function () {
+                // 앱이 열리지 않으면 스토어로 리디렉션
+                var isAppInstalled = false; // 실제로 확인할 수 없으므로, 기본적으로 시간을 기다린 후 스토어로 리디렉션
+                if (!isAppInstalled) {
+                    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    
+                    // 안드로이드인 경우
+                    if (/android/i.test(userAgent)) {
+                        window.location.href = "https://play.google.com/store/apps/details?id=com.wemingle.cleaningrest";  // 플레이스토어 URL
+                    } 
+                    // iOS인 경우
+                    else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                        window.location.href = "https://apps.apple.com/us/app/id6480429052";  // 앱스토어 URL
+                    }
+                }
+            }, 2000); // 2초 후 리디렉션 시도
+        </script>
         </head>
         <body>
             <div class="container">
