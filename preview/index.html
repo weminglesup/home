@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="위밍글">
-    <meta property="og:description" content="팀 게임 멤버 및 일정 관리">
-    <meta property="og:image" content="https://cleaningrest-s3bucket.s3.ap-northeast-2.amazonaws.com/wemingle_text.png" id="og-image">
+    <meta property="og:description" content="팀 게임 파티 콘텐츠 고정 멤버">
+    <meta property="og:image" content="" id="og-image">
     <meta property="og:image:width" content="150">
     <meta property="og:image:height" content="150">
     <meta property="og:url" content="https://wemingle.app">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="위밍글">
-    <meta name="twitter:description" content="팀 게임 멤버 및 일정 관리">
-    <meta name="twitter:image" content="">
+    <meta name="twitter:description" content="팀 게임 파티 콘텐츠 고정 멤버">
+    <meta name="twitter:image" content="https://cleaningrest-s3bucket.s3.ap-northeast-2.amazonaws.com/wemingle_text.png">
     <title>Deep Link Preview</title>
     <style>
         body {
@@ -36,11 +36,10 @@
             text-align: center;
         }
       	.main-image {
-            width: 50%;
+            width: 100%;
             height: 250px;
             background: url('https://cleaningrest-s3bucket.s3.ap-northeast-2.amazonaws.com/wemingle_text.png') no-repeat center center;
-            background-size: cover;
-            background-position: center;
+            background-size: contain;
             margin: 0 auto;
         }
         .content {
@@ -75,7 +74,7 @@
         <div class="main-image"></div>
         <div class="content">
             <h1 class="app-title">위밍글</h1>
-            <p class="description">팀 게임 멤버 및 일정 관리</p>
+            <p class="description">팀 게임 파티 콘텐츠 고정 멤버</p>
             <p>앱을 다운로드하려면 아래 링크를 클릭하세요.</p>
             <a href="https://wemingle.app">앱 열기</a>
         </div>
@@ -84,7 +83,6 @@
             <a href="https://bit.ly/3z42JCI"><img src="https://cdn.branch.io/branch-assets/1659570137910-og_image.png"></a>
         </div>
     </div>
-
     <script>
         // 현재 페이지 URL에서 쿼리 파라미터를 가져옵니다.
         const urlParams = new URLSearchParams(window.location.search);
@@ -99,18 +97,13 @@
         if (imageUrl) {
             document.getElementById('og-image').setAttribute('content', imageUrl);
             document.querySelector('meta[name="twitter:image"]').setAttribute('content', imageUrl);
-            const mainImage = document.querySelector('.main-image');
-            mainImage.style.backgroundImage = `url(${imageUrl})`;
         } else {
-            const defaultImage = "https://cleaningrest-s3bucket.s3.ap-northeast-2.amazonaws.com/wemingle_text.png";
-            document.getElementById('og-image').setAttribute('content', defaultImage);
-            document.querySelector('meta[name="twitter:image"]').setAttribute('content', defaultImage);
-            const mainImage = document.querySelector('.main-image');
-            mainImage.style.backgroundImage = `url(${defaultImage})`;
+            document.getElementById('og-image').setAttribute('content', "https://cleaningrest-s3bucket.s3.ap-northeast-2.amazonaws.com/wemingle_text.png");
+            document.querySelector('meta[name="twitter:image"]').setAttribute('content', "https://cleaningrest-s3bucket.s3.ap-northeast-2.amazonaws.com/wemingle_text.png");
         }
         
         // 딥링크 URL을 구성합니다.
-        const deepLinkUrl = `wemingle://preview?companyid_index=${companyidIndex}&uni_link=true`;
+        const deepLinkUrl = wemingle://preview?companyid_index=${companyidIndex}&uni_link=true;
 
         // 딥링크 시도
         window.location.href = deepLinkUrl;
@@ -133,5 +126,8 @@
             }
         }, 2000); // 2초 후 리디렉션 시도
     </script>
+
+
+    
 </body>
 </html>
