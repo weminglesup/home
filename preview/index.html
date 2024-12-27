@@ -88,19 +88,19 @@
         const urlParams = new URLSearchParams(window.location.search);
 
         // 쿼리 파라미터에서 딥링크 관련 데이터 추출
-        const title = urlParams.get('title');
-        const description = urlParams.get('description');
-        const imageUrl = urlParams.get('imageUrl');
+        // const title = urlParams.get('title');
+        // const description = urlParams.get('description');
+        // const imageUrl = urlParams.get('imageUrl');
         const companyidIndex = urlParams.get('companyid_index');
 
         // imageUrl이 존재하면 OG 태그의 og:image와 twitter:image를 업데이트
-        if (imageUrl) {
-            document.getElementById('og-image').setAttribute('content', imageUrl);
-            document.querySelector('meta[name="twitter:image"]').setAttribute('content', imageUrl);
-        } else {
-            document.getElementById('og-image').setAttribute('content', "https://cleaningrest-s3bucket.s3.ap-northeast-2.amazonaws.com/wemingle_text.png");
-            document.querySelector('meta[name="twitter:image"]').setAttribute('content', "https://cleaningrest-s3bucket.s3.ap-northeast-2.amazonaws.com/wemingle_text.png");
-        }
+        // if (imageUrl) {
+        //     document.getElementById('og-image').setAttribute('content', imageUrl);
+        //     document.querySelector('meta[name="twitter:image"]').setAttribute('content', imageUrl);
+        // } else {
+        //     document.getElementById('og-image').setAttribute('content', "https://cleaningrest-s3bucket.s3.ap-northeast-2.amazonaws.com/wemingle_text.png");
+        //     document.querySelector('meta[name="twitter:image"]').setAttribute('content', "https://cleaningrest-s3bucket.s3.ap-northeast-2.amazonaws.com/wemingle_text.png");
+        // }
         
         // 딥링크 URL을 구성합니다.
         const deepLinkUrl = wemingle://preview?companyid_index=${companyidIndex}&uni_link=true;
