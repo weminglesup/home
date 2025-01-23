@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OAuth Callback</title>
+</head>
+<body>
+  <h1>Redirecting...</h1>
+  <script>
+    // URL에서 쿼리 파라미터 추출
+    const queryParams = new URLSearchParams(window.location.search);
+
+    // 필요한 데이터를 가져옴 (예: access_token)
+    const accessToken = queryParams.get('access_token');
+    const state = queryParams.get('state'); // 추가적으로 Riot API에서 전달하는 state 값
+
+    if (accessToken) {
+      // 앱으로 데이터를 전달
+      // 예시 1: 웹앱과 통신
+      window.opener.postMessage({ accessToken, state }, '*');
+      
+      // 예시 2: 모바일 앱으로 전달 (Deep Link)
+      const appUrl = `wemingle://oauth-callback?access_token=${accessToken}&state=${state}`;
+      window.location.href = appUrl;
+    } else {
+      console.error('Access token not found in the callback.');
+      document.body.innerHTML = '<h1>Error: Access token not received.</h1>';
+    }
+  </script>
+</body>
+</html>
