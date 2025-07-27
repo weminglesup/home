@@ -3,10 +3,10 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "com.wemingle.cleaningrest",
+      "package_name": "com.wemingle.wemingle",
       "sha256_cert_fingerprints": [
-        "28:9E:5F:9C:85:70:BA:FB:9B:CE:21:01:8D:07:CA:64:D1:E2:57:CF:AE:A2:2B:D4:72:11:B0:31:8E:8C:EB:80",
-        "B7:F9:88:C2:96:CE:21:EF:F6:E8:15:A2:B6:1B:98:32:A4:C6:ED:30:89:58:BB:8C:57:49:D8:46:14:CF:98:8B"
+        "2f:64:e5:7b:a3:78:1c:8f:34:cc:0d:b9:03:d2:17:1f:df:94:27:d8:c5:e9:31:3c:b3:d1:24:25:d4:ff:cc:02",
+        "7F:46:50:E1:CE:9A:DC:50:1B:B1:A6:0A:0D:91:F1:8C:B2:BA:3B:1C:4A:0B:AB:2A:D8:29:A3:26:60:40:52:55"
       ]
     }
   }
